@@ -1,4 +1,4 @@
-#**Traffic Signs Recognition system using Deep Learning Solution**
+# Traffic Signs Recognition system using Deep Learning Solution
 
 Nowdays the technology focus on creating  Autonomous vehicles and this field and one of the important aspects associated with it is that teching vehicles how to detect and recognis traffic signs and lights is crucial as teaching it how to drive itself
 
@@ -21,7 +21,7 @@ The following sections descripe dataset analysis, model architecture, evaluation
 [image8]: ./readme_images/Network_model.png "Network Model"
 
 
-##Data Set Summary & Exploration
+## Data Set Summary & Exploration
 
 
 I used the Numpy library to calculate summary statistics of the traffic signs data set:
@@ -44,7 +44,7 @@ Using Pandas Liberary, Histogram of Training data is plotted to give intuation o
 The code for this step is contained in the sixth code cells of the IPython notebook.
 
 
-###Design and Test a Model Architecture
+### Design and Test a Model Architecture
 
 __Dataset Preprocessing__
 
@@ -90,7 +90,7 @@ as a preformancce measure for my network, the following figure contain a visuali
 ![alt text][image3]
 
 
-###Test a Model on New Images
+### Test a Model on New Images
 
 Here are ten German traffic signs that I found on the web:
 
@@ -108,15 +108,15 @@ As a final step, visualization of inner feature maps preduced my frist inception
 
 this visualization can help understand basic features learnt by network to prediect its outputs, aslo help detecting of overfitting if happen 
 
-###Further Improvement
+### Further Improvement
 
-1- Use Data Augmentation technequies for dataset balancing 
-2- Incease complixty of inception block by design a separet 1x1 conv. layer be each path of inception block instead of only single 1x1 conv for all
-3- Making Network model deeper by using more inception blocks 
+1. Use Data Augmentation technequies for dataset balancing 
+2. Incease complixty of inception block by design a separet 1x1 conv. layer be each path of inception block instead of only single 1x1 conv for all
+3. Making Network model deeper by using more inception blocks 
 
 
-###Refrences
+### Refrences
 
-1- Mrinal Haloi 2015 "[Traffic Sign Classification Using Deep Inception Based Convolutional Networks](https://arxiv.org/abs/1511.02992)". arXiv:1511.02992
-2- Max Jaderberg and Karen Simonyan and Andrew Zisserman and Koray Kavukcuoglu 2015 "[Spatial Transformer Networks](https://arxiv.org/abs/1506.02025)". arXiv:1506.02025
-3- Christian Szegedy and Vincent Vanhoucke and Sergey Ioffe and Jonathon Shlens and Zbigniew Wojna 2015 "[Rethinking the Inception Architecture for Computer Vision](https://arxiv.org/abs/1512.00567)". arXiv:1512.00567
+1. Mrinal Haloi 2015 "[Traffic Sign Classification Using Deep Inception Based Convolutional Networks](https://arxiv.org/abs/1511.02992)". arXiv:1511.02992
+2. Max Jaderberg and Karen Simonyan and Andrew Zisserman and Koray Kavukcuoglu 2015 "[Spatial Transformer Networks](https://arxiv.org/abs/1506.02025)". arXiv:1506.02025
+3. Christian Szegedy and Vincent Vanhoucke and Sergey Ioffe and Jonathon Shlens and Zbigniew Wojna 2015 "[Rethinking the Inception Architecture for Computer Vision](https://arxiv.org/abs/1512.00567)". arXiv:1512.00567
