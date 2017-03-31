@@ -5,10 +5,11 @@ Nowdays the technology focus on creating  Autonomous vehicles and this field and
 In this project, i`m purposing a pipeline for traffic signs recognition using Deep learning methods. thes model get use of official german traffic signs dataset for training and testing purposes. 
 
 
+---
 
 The following sections descripe dataset analysis, model architecture, evaluations and future improvements.
 
-//]: # (Image References)
+[//]: # (Image References)
 
 [image1]: ./readme_images/dataset_samples.png "Dataset Samples Visualization"
 [image2]: ./readme_images/dataset_hist.png "Training Dataset Histogram"
@@ -16,6 +17,8 @@ The following sections descripe dataset analysis, model architecture, evaluation
 [image4]: ./readme_images/test_samples.png "Test Samples"
 [image5]: ./readme_images/test_samples_reuslts.png "Test Samples Results "
 [image6]: ./readme_images/inception_layer_featuremaps.png "Featuremaps visualization of Inception layer 1"
+[image7]: ./readme_images/inception_block.png "Inception Block"
+[image8]: ./readme_images/Network_model.png "Network Model"
 
 
 ##Data Set Summary & Exploration
@@ -48,9 +51,32 @@ __Dataset Preprocessing__
 Frist i tried image normalization technique using subtracting mean images obtained from training dataset but this step tends to give worse accuracy.
 So dataset shuffling is the only pre-processing step for dataset.
 
+__Model Architecture__
+
+my solution is inspired by [1], mainly using spatial transformater networks[2] to nullify any disturtion in traffic sign image due to translation, rotation or even contrast variation.
+
+after that using inception model used in GoogleNet[3]. for feature extraction and classification. the diffrence between purpoced solution here and in [1] is that this purposal tries to minimize model arch. by using fewer layers to optain high accuracy.
 
 
+*Localization Network*
+I used LeNet network as my loclization network to learn affine transformation parameters. also add dropout layer to prevent overfitting in training phase.
 
+*Inception Block**
+the next figure visualize optimized inception block used as key element of my network
+![alt text][image7]
+
+My final model is presented in next figure:
+![alt text][image8]
+
+The code for training the model is located in  cells  [27-30] of the ipython notebook. 
+
+After tunning, the below parameters were found to yield the best results:
+* Learning rate : 0.0001
+* Batch size : 128
+* Epoch count : 50
+* Keep probability for Loclization network : 0.4
+* Keep probability for feature maps  : 0.5
+* Keep probability for fully connected layer : 0.5
 
 My final model results were:
 * training set accuracy of 99.4 %
