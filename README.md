@@ -58,10 +58,10 @@ my solution is inspired by [1], mainly using spatial transformater networks[2] t
 after that using inception model used in GoogleNet[3]. for feature extraction and classification. the diffrence between purpoced solution here and in [1] is that this purposal tries to minimize model arch. by using fewer layers to optain high accuracy.
 
 
-*Localization Network*
+__**Localization Network**__
 I used LeNet network as my loclization network to learn affine transformation parameters. also add dropout layer to prevent overfitting in training phase.
 
-*Inception Block**
+__**Inception Block**__
 the next figure visualize optimized inception block used as key element of my network
 ![alt text][image7]
 
