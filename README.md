@@ -1,54 +1,96 @@
-## Project: Build a Traffic Sign Recognition Program
-[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
+#**Traffic Signs Recognition system using Deep Learning Solution**
 
-Overview
----
-In this project, you will use what you've learned about deep neural networks and convolutional neural networks to classify traffic signs. You will train and validate a model so it can classify traffic sign images using the [German Traffic Sign Dataset](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset). After the model is trained, you will then try out your model on images of German traffic signs that you find on the web.
+Nowdays the technology focus on creating  Autonomous vehicles and this field and one of the important aspects associated with it is that teching vehicles how to detect and recognis traffic signs and lights is crucial as teaching it how to drive itself
 
-We have included an Ipython notebook that contains further instructions 
-and starter code. Be sure to download the [Ipython notebook](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb). 
+In this project, i`m purposing a pipeline for traffic signs recognition using Deep learning methods. thes model get use of official german traffic signs dataset for training and testing purposes. 
 
-We also want you to create a detailed writeup of the project. Check out the [writeup template](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/writeup_template.md) for this project and use it as a starting point for creating your own writeup. The writeup can be either a markdown file or a pdf document.
 
-To meet specifications, the project will require submitting three files: 
-* the Ipython notebook with the code
-* the code exported as an html file
-* a writeup report either as a markdown or pdf file 
 
-Creating a Great Writeup
----
-A great writeup should include the [rubric points](https://review.udacity.com/#!/rubrics/481/view) as well as your description of how you addressed each point.  You should include a detailed description of the code used in each step (with line-number references and code snippets where necessary), and links to other supporting documents or external references.  You should include images in your writeup to demonstrate how your code works with examples.  
+The following sections descripe dataset analysis, model architecture, evaluations and future improvements.
 
-All that said, please be concise!  We're not looking for you to write a book here, just a brief description of how you passed each rubric point, and references to the relevant code :). 
+//]: # (Image References)
 
-You're not required to use markdown for your writeup.  If you use another method please just submit a pdf of your writeup.
+[image1]: ./readme_images/dataset_samples.png "Dataset Samples Visualization"
+[image2]: ./readme_images/dataset_hist.png "Training Dataset Histogram"
+[image3]: ./readme_images/confusion_matrix.png "Confustion matrix of validation dataset"
+[image4]: ./readme_images/test_samples.png "Test Samples"
+[image5]: ./readme_images/test_samples_reuslts.png "Test Samples Results "
+[image6]: ./readme_images/inception_layer_featuremaps.png "Featuremaps visualization of Inception layer 1"
 
-The Project
----
-The goals / steps of this project are the following:
-* Load the data set
-* Explore, summarize and visualize the data set
-* Design, train and test a model architecture
-* Use the model to make predictions on new images
-* Analyze the softmax probabilities of the new images
-* Summarize the results with a written report
 
-### Dependencies
-This lab requires:
+##Data Set Summary & Exploration
 
-* [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit)
 
-The lab enviroment can be created with CarND Term1 Starter Kit. Click [here](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) for the details.
+I used the Numpy library to calculate summary statistics of the traffic signs data set:
 
-### Dataset and Repository
+    The size of training set is 34799
+    the size of Validation set is 4410
+    The size of test set is 12630
+    The shape of a traffic sign image is (32, 32, 3)
+    The number of unique classes/labels in the data set is 43
 
-1. Download the data set. The classroom has a link to the data set in the "Project Instructions" content. This is a pickled dataset in which we've already resized the images to 32x32. It contains a training, validation and test set.
-2. Clone the project, which contains the Ipython notebook and the writeup template.
-```sh
-git clone https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project
-cd CarND-Traffic-Sign-Classifier-Project
-jupyter notebook Traffic_Sign_Classifier.ipynb
-```
+the following figure shows samples of training dataset
 
-### Requirements for Submission
-Follow the instructions in the `Traffic_Sign_Classifier.ipynb` notebook and write the project report using the writeup template as a guide, `writeup_template.md`. Submit the project code and writeup document.
+![alt text][image1]
+
+The code for this step is contained in the first five code cells of the IPython notebook.
+
+Using Pandas Liberary, Histogram of Training data is plotted to give intuation on overall distrpution 
+![alt text][image2]
+
+The code for this step is contained in the sixth code cells of the IPython notebook.
+
+
+###Design and Test a Model Architecture
+
+__Dataset Preprocessing__
+
+Frist i tried image normalization technique using subtracting mean images obtained from training dataset but this step tends to give worse accuracy.
+So dataset shuffling is the only pre-processing step for dataset.
+
+
+
+
+
+My final model results were:
+* training set accuracy of 99.4 %
+* validation set accuracy of 95.4%
+* test set accuracy of 93.2%
+
+
+__Preformance measure__
+
+as a preformancce measure for my network, the following figure contain a visualization of confustion matrix calculated using validation dataset
+![alt text][image3]
+
+
+###Test a Model on New Images
+
+Here are ten German traffic signs that I found on the web:
+
+![alt text][image4]
+
+The code for making predictions on my final model is located in the 38th cell of the Ipython notebook.
+Here are the results of the prediction:
+![alt text][image5]
+
+The model was able to correctly guess 8 of the 10 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of 93.2 %
+
+
+As a final step, visualization of inner feature maps preduced my frist inception block can be found in next figure.
+![alt text][image6]
+
+this visualization can help understand basic features learnt by network to prediect its outputs, aslo help detecting of overfitting if happen 
+
+###Further Improvement
+
+1- Use Data Augmentation technequies for dataset balancing 
+2- Incease complixty of inception block by design a separet 1x1 conv. layer be each path of inception block instead of only single 1x1 conv for all
+3- Making Network model deeper by using more inception blocks 
+
+
+###Refrences
+
+1- Mrinal Haloi 2015 "[Traffic Sign Classification Using Deep Inception Based Convolutional Networks](https://arxiv.org/abs/1511.02992)". arXiv:1511.02992
+2- Max Jaderberg and Karen Simonyan and Andrew Zisserman and Koray Kavukcuoglu 2015 "[Spatial Transformer Networks](https://arxiv.org/abs/1506.02025)". arXiv:1506.02025
+3- Christian Szegedy and Vincent Vanhoucke and Sergey Ioffe and Jonathon Shlens and Zbigniew Wojna 2015 "[Rethinking the Inception Architecture for Computer Vision](https://arxiv.org/abs/1512.00567)". arXiv:1512.00567
