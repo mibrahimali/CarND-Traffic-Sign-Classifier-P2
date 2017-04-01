@@ -141,9 +141,9 @@ The model was able to correctly guess 8 of the 10 traffic signs, which gives an 
 
 __**Comments on Preformance of small test set**__
 
-*Spatial Transformer Network was successfully focus on the spacific reagion of interset and asly denoising most of images.
-*Network missclassified speed limit sign 70km/h as speed limit sign 20km/h with confidance 84.2% and correct class was given probability of 5%. this can be due to add guassian noise 
-*Network missclassified speed limit sign 60km/h as speed limit sign 50km/h with confidance 96.7% and correct class was given probability of 2.64%
+* Spatial Transformer Network was successfully focus on the spacific reagion of interset and asly denoising most of images.
+* Network missclassified speed limit sign 70km/h as speed limit sign 20km/h with confidance 84.2% and correct class was given probability of 5%. this can be due to add guassian noise 
+* Network missclassified speed limit sign 60km/h as speed limit sign 50km/h with confidance 96.7% and correct class was given probability of 2.64%
 
 As a final step, visualization of inner feature maps preduced my frist inception block can be found in next figure.
 ![alt text][image6]
