@@ -65,8 +65,39 @@ __**Inception Block**__
 the next figure visualize optimized inception block used as key element of my network
 ![alt text][image7]
 
+| Layer         		|     Description	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| (1) Input         		| 32x32x3 RGB image   							| 
+| (2) Convolution 1x1     	| 3x3 stride, same padding, outputs 11x11x24 	|
+| (3) RELU					|												|
+| (4) Convolution 3x3	    | 1x1 stride, input(1)  outputs 11x11x16   		|
+| (5) RELU					|												|
+| (6) Convolution 5x5		| 1x1 stride, input(1)  outputs 11x11x8   		|
+| (7) RELU					|												|
+| (8) Max pooling 3x3      	| 1x1 stride, input(4)  outputs 11x11x16 		|
+| (9) concatnate(2,4,6,8)	| outputs 11x11x64 feature maps					|
+
+
 My final model is presented in next figure:
 ![alt text][image8]
+
+| Layer         		|     Description	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| (1)Input         		| 32x32x3 RGB image   							| 
+| (2) Spatial Transformer| LeNet Network, outputs 32x32x3 transformed image|
+| (3) Inception 3a		| input 32x32x3 RGB image, output 11x11x64 feature maps|
+| (4) Dropout			| Keep Probabilit = 0.5							|
+| (5) Inception 4a		| input 11x11x64 RGB image, output 4x4x64 feature maps|
+| (6) flatten			| output 1024 feature array						|
+| (7) Fully connected	| output 512    								|
+| (8) RELU					|												|
+| (9) Fully connected		| output 100   									|
+| (10) RELU					|												|
+| (11) Dropout			| Keep Probabilit = 0.5							|
+| (12) Fully connected		| output 43 class score        									|
+| (13) Softmax				| output 43 class probabilites        									|
+
+
 
 The code for training the model is located in  cells  [27-30] of the ipython notebook. 
 
@@ -96,12 +127,23 @@ Here are ten German traffic signs that I found on the web:
 
 ![alt text][image4]
 
+__Notes about test images:__
+* Turn left ahead sign is very blury and sky background of sign almost has same color of sign itself
+* Keep Right sign has a very high contrast
+* Slippery road sign is very distorted 
+* gaussian noise is manually add to Speed limit 70 km/h  
+
 The code for making predictions on my final model is located in the 38th cell of the Ipython notebook.
 Here are the results of the prediction:
 ![alt text][image5]
 
 The model was able to correctly guess 8 of the 10 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of 93.2 %
 
+__**Comments on Preformance of small test set**__
+
+*Spatial Transformer Network was successfully focus on the spacific reagion of interset and asly denoising most of images.
+*Network missclassified speed limit sign 70km/h as speed limit sign 20km/h with confidance 84.2% and correct class was given probability of 5%. this can be due to add guassian noise 
+*Network missclassified speed limit sign 60km/h as speed limit sign 50km/h with confidance 96.7% and correct class was given probability of 2.64%
 
 As a final step, visualization of inner feature maps preduced my frist inception block can be found in next figure.
 ![alt text][image6]
