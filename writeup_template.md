@@ -17,9 +17,6 @@ The goals / steps of this project are the following:
 * Summarize the results with a written report
 
 
-
-
-
 [//]: # (Image References)
 
 [image1]: ./examples/visualization.jpg "Visualization"
